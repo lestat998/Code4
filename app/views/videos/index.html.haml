@@ -1,0 +1,21 @@
+%p{ id: "notice" }= notice
+
+%h1 Listing Videos
+
+= link_to new_video_path, class: "btn-floating btn-large waves-effect waves-light red" do 
+  %i.material-icons add
+
+%ul{ class: "collapsible", 'data-collapsible' => 'accordion', remote: true }
+  -@videos.each do |video|
+    %li
+      %div.collapsible-header
+        %i.material-icons library_books
+        = link_to video.title, video, id: "show"
+        %span.right
+          = link_to edit_video_path(video) do 
+            %i.material-icons mode_edit
+          = link_to video, method: :delete, data: { confirm: "Are you sure?" } do 
+            %i.material-icons delete_forever
+
+      %div{ class: "collapsible-body" }
+        %p= video.description 

@@ -1,0 +1,16 @@
+= form_for @video do |f|
+  - if @video.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@video.errors.count, "error")} prohibited this video from being saved:"
+      %ul
+        - @video.errors.full_messages.each do |msg|
+          %li= msg
+
+  .input-field
+    = f.text_field :wisitia, placeholder: "link", length: "10"
+  .input-field
+    = f.text_field :title, placeholder: "Title", length: '20'
+  .input-field
+    = f.text_area :description, placeholder: "Description", length: '800', class: "materialize-textarea"
+  = f.submit "Submit", class: "waves-effect waves-light btn"
+  = link_to 'Back', videos_path, class: "waves-effect waves-light btn", name: "action"
